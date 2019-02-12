@@ -12,7 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RCYBookAnimatorObject : NSObject
 
-+ (id<UIViewControllerAnimatedTransitioning>)objectWithFromView:(__kindof UIView *)fromView animationControllerForOperation:(UINavigationControllerOperation)operation;
+//用户视角距离
+@property (nonatomic, assign) CGFloat zPosition;
+
++ (id<UIViewControllerAnimatedTransitioning>)objectWithBookCoverView:(__kindof UIView *)bookCoverView animationControllerForOperation:(UINavigationControllerOperation)operation;
 
 @end
 

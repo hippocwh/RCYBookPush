@@ -10,18 +10,25 @@
 
 @interface RCYBookAnimatorObject () <UIViewControllerAnimatedTransitioning>
 
-@property (nonatomic, strong) __kindof UIView *fromView;
+@property (nonatomic, strong) __kindof UIView *bookCoverView;
 @property (nonatomic, assign) UINavigationControllerOperation operation;
 
 @end
 
 @implementation RCYBookAnimatorObject
 
-+ (id<UIViewControllerAnimatedTransitioning>)objectWithFromView:(__kindof UIView *)fromView animationControllerForOperation:(UINavigationControllerOperation)operation {
++ (id<UIViewControllerAnimatedTransitioning>)objectWithBookCoverView:(__kindof UIView *)bookCoverView animationControllerForOperation:(UINavigationControllerOperation)operation {
     RCYBookAnimatorObject *object = [[RCYBookAnimatorObject alloc] init];
-    object.fromView = fromView;
+    object.bookCoverView = bookCoverView;
     object.operation = operation;
     return object;
+}
+
+- (CGFloat)zPosition {
+    if (!_zPosition) {
+        _zPosition = 500;
+    }
+    return _zPosition;
 }
 
 - (NSTimeInterval)transitionDuration:(nullable id <UIViewControllerContextTransitioning>)transitionContext {
@@ -31,26 +38,28 @@
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
     UIView *containerView = [transitionContext containerView];
     CATransform3D transform = CATransform3DIdentity;
-    transform.m34 = -0.002;
+    transform.m34 = -1 / self.zPosition;
     [containerView.layer setSublayerTransform:transform];
+    
+    NSTimeInterval duration = [self transitionDuration:transitionContext];
+    
     switch (self.operation) {
         case UINavigationControllerOperationPush: {
             UIView *currentToView = [transitionContext viewForKey:UITransitionContextToViewKey];
             //toView 和 fromView 都用截图
             UIView *toView = [currentToView snapshotViewAfterScreenUpdates:YES];
-            UIView *fromView = [self.fromView snapshotViewAfterScreenUpdates:NO];
+            UIView *fromView = [self.bookCoverView snapshotViewAfterScreenUpdates:NO];
             
             [containerView addSubview:toView];
             [containerView addSubview:fromView];
             
             CGRect toViewFrame = toView.frame;
-            CGRect fromViewFrame = self.fromView.frame;
+            CGRect fromViewFrame = self.bookCoverView.frame;
 
             fromView.layer.anchorPoint = CGPointMake(0, 0.5);
             fromView.frame = fromViewFrame;
             toView.frame = fromViewFrame;
             
-            NSTimeInterval duration = [self transitionDuration:transitionContext];
             [UIView animateKeyframesWithDuration:duration
                                            delay:0.0
                                          options:0
@@ -62,6 +71,7 @@
                                           [fromView removeFromSuperview];
                                           [toView removeFromSuperview];
                                           [containerView addSubview:currentToView];
+                                          [containerView.layer setSublayerTransform:CATransform3DIdentity];
                                           [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
                                       }];
             break;
@@ -71,7 +81,7 @@
             UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
             UIView *currentFromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
             //toView 和 fromView 都用截图
-            UIView *toView = [self.fromView snapshotViewAfterScreenUpdates:YES];
+            UIView *toView = [self.bookCoverView snapshotViewAfterScreenUpdates:YES];
             UIView *fromView = [currentFromView snapshotViewAfterScreenUpdates:NO];
             
             [containerView addSubview:fromView];
@@ -79,7 +89,7 @@
             [containerView insertSubview:toVC.view atIndex:0];
             fromVC.view.hidden = YES;
 
-            CGRect toViewFrame = self.fromView.frame;
+            CGRect toViewFrame = self.bookCoverView.frame;
             CGRect fromViewFrame = fromView.frame;
 
             toView.layer.anchorPoint = CGPointMake(0, 0.5);
@@ -87,7 +97,6 @@
             toView.frame = fromViewFrame;
             toView.layer.transform = CATransform3DMakeRotation(-M_PI_2, 0, 1, 0);
             
-            NSTimeInterval duration = [self transitionDuration:transitionContext];
             [UIView animateKeyframesWithDuration:duration
                                            delay:0.0
                                          options:0
@@ -98,6 +107,7 @@
                                       } completion:^(BOOL finished) {
                                           [fromView removeFromSuperview];
                                           [toView removeFromSuperview];
+                                          [containerView.layer setSublayerTransform:CATransform3DIdentity];
                                           [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
                                       }];
             break;

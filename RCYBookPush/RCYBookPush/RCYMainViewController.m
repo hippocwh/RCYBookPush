@@ -55,7 +55,7 @@
                                    animationControllerForOperation:(UINavigationControllerOperation)operation
                                                 fromViewController:(UIViewController *)fromVC
                                                   toViewController:(UIViewController *)toVC {
-   return [RCYBookAnimatorObject objectWithFromView:self.bookCover animationControllerForOperation:operation];
+   return [RCYBookAnimatorObject objectWithBookCoverView:self.bookCover animationControllerForOperation:operation];
 }
 
 @end
