@@ -109,6 +109,10 @@
                                           [toView removeFromSuperview];
                                           [containerView.layer setSublayerTransform:CATransform3DIdentity];
                                           [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
+                                          if ([transitionContext transitionWasCancelled]) {
+                                              fromVC.view.hidden = NO;
+                                              [toVC.view removeFromSuperview];
+                                          }
                                       }];
             break;
         }

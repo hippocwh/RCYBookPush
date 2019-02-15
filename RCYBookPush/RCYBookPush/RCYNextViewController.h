@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RCYNextViewController : UIViewController
 
+@property (nonatomic, weak) UIImageView *bookCover;
+
 @end
 
 NS_ASSUME_NONNULL_END

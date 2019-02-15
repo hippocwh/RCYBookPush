@@ -7,10 +7,13 @@
 //
 
 #import "RCYNextViewController.h"
+#import "RCYBookAnimatorObject.h"
 
-@interface RCYNextViewController ()
+@interface RCYNextViewController () <UINavigationControllerDelegate>
 
 @property (nonatomic, strong) UILabel *contentLabel;
+
+@property (nonatomic, strong) UIPercentDrivenInteractiveTransition *percentInteractiveTransition;
 
 @end
 
@@ -31,10 +34,14 @@
     
     self.title = @"我是第二个";
     self.view.backgroundColor = [UIColor colorWithRed:0.96 green:0.9 blue:0.77 alpha:1];
+    self.navigationController.delegate = self;
     
     [self.view addSubview:self.contentLabel];
     self.contentLabel.frame = CGRectMake(15, 15, [UIScreen mainScreen].bounds.size.width - 30, [UIScreen mainScreen].bounds.size.height - 30);
     
+    UIScreenEdgePanGestureRecognizer *edgePanGesture = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(edgePanAction:)];
+    edgePanGesture.edges = UIRectEdgeLeft;
+    [self.view addGestureRecognizer:edgePanGesture];
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(popback)];
     self.view.userInteractionEnabled = YES;
@@ -43,6 +50,27 @@
 
 - (void)popback {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)edgePanAction:(UIScreenEdgePanGestureRecognizer *)recognizer {
+    CGFloat progress = [recognizer translationInView:self.view].x / self.view.bounds.size.width;
+    progress = MIN(1.0, MAX(0.0, progress));
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        self.percentInteractiveTransition = [[UIPercentDrivenInteractiveTransition alloc] init];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if (recognizer.state == UIGestureRecognizerStateChanged) {
+        [self.percentInteractiveTransition updateInteractiveTransition:progress];
+    }
+    else if (recognizer.state == UIGestureRecognizerStateEnded || recognizer.state == UIGestureRecognizerStateCancelled) {
+        if (progress > 0.5) {
+            [self.percentInteractiveTransition finishInteractiveTransition];
+        }
+        else {
+            [self.percentInteractiveTransition cancelInteractiveTransition];
+        }
+        self.percentInteractiveTransition = nil;
+    }
 }
 
 - (UILabel *)contentLabel {
@@ -57,6 +85,22 @@
         _contentLabel.attributedText = attributedString;
     }
     return _contentLabel;
+}
+
+- (id <UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                   animationControllerForOperation:(UINavigationControllerOperation)operation
+                                                fromViewController:(UIViewController *)fromVC
+                                                  toViewController:(UIViewController *)toVC {
+    return [RCYBookAnimatorObject objectWithBookCoverView:self.bookCover animationControllerForOperation:operation];
+}
+
+- (id <UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
+                          interactionControllerForAnimationController:(id <UIViewControllerAnimatedTransitioning>) animationController{
+    if ([animationController isKindOfClass:[RCYBookAnimatorObject class]]) {
+        return self.percentInteractiveTransition;
+    }else{
+        return nil;
+    }
 }
 
 @end

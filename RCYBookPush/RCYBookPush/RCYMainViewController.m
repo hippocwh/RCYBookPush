@@ -18,12 +18,17 @@
 
 @implementation RCYMainViewController
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.navigationController.delegate = self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = @"我是第一个";
     self.view.backgroundColor = UIColor.brownColor;
-    self.navigationController.delegate = self;
+    
     
     [self.view addSubview:self.bookCover];
     self.bookCover.frame = CGRectMake(0, 0, 200, 240);
@@ -35,6 +40,7 @@
 
 - (void)pushToNextViewController {
     RCYNextViewController *nextVc = [[RCYNextViewController alloc] init];
+    nextVc.bookCover = self.bookCover;
     [self.navigationController pushViewController:nextVc animated:YES];
 }
 
