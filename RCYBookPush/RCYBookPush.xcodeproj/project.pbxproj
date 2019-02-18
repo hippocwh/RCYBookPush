@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9CDFE7F3221A9BD600709A11 /* UIViewController+bookAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDFE7F2221A9BD600709A11 /* UIViewController+bookAnimation.m */; };
 		9CE4F90521FFF03D00A890A5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4F90421FFF03D00A890A5 /* AppDelegate.m */; };
 		9CE4F90D21FFF03E00A890A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE4F90C21FFF03E00A890A5 /* Assets.xcassets */; };
 		9CE4F91021FFF03E00A890A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CE4F90E21FFF03E00A890A5 /* LaunchScreen.storyboard */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9CDFE7F1221A9BD600709A11 /* UIViewController+bookAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+bookAnimation.h"; sourceTree = "<group>"; };
+		9CDFE7F2221A9BD600709A11 /* UIViewController+bookAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+bookAnimation.m"; sourceTree = "<group>"; };
 		9CE4F90021FFF03D00A890A5 /* RCYBookPush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RCYBookPush.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CE4F90321FFF03D00A890A5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9CE4F90421FFF03D00A890A5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -74,6 +77,8 @@
 				9CE4F91D21FFF1AC00A890A5 /* RCYMainViewController.m */,
 				9CE4F91F21FFF98900A890A5 /* RCYBookAnimatorObject.h */,
 				9CE4F92021FFF98900A890A5 /* RCYBookAnimatorObject.m */,
+				9CDFE7F1221A9BD600709A11 /* UIViewController+bookAnimation.h */,
+				9CDFE7F2221A9BD600709A11 /* UIViewController+bookAnimation.m */,
 			);
 			path = RCYBookPush;
 			sourceTree = "<group>";
@@ -149,6 +154,7 @@
 			files = (
 				9CE4F91E21FFF1AC00A890A5 /* RCYMainViewController.m in Sources */,
 				9CE4F91321FFF03E00A890A5 /* main.m in Sources */,
+				9CDFE7F3221A9BD600709A11 /* UIViewController+bookAnimation.m in Sources */,
 				9CE4F91B21FFF06000A890A5 /* RCYNextViewController.m in Sources */,
 				9CE4F92121FFF98900A890A5 /* RCYBookAnimatorObject.m in Sources */,
 				9CE4F90521FFF03D00A890A5 /* AppDelegate.m in Sources */,
