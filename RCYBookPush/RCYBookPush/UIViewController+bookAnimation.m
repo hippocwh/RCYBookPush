@@ -131,7 +131,7 @@
                                    animationControllerForOperation:(UINavigationControllerOperation)operation
                                                 fromViewController:(UIViewController *)fromVC
                                                   toViewController:(UIViewController *)toVC {
-    if ([toVC isKindOfClass:self.targetClass]) {
+    if ([toVC isKindOfClass:self.targetClass] && self.bookAnimateOperation == operation) {
         return [RCYBookAnimatorObject objectWithBookCoverView:self.bookCoverView animationControllerForOperation:operation];
     }
     return nil;
