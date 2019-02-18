@@ -39,12 +39,12 @@
     [self.view addSubview:self.contentLabel];
     self.contentLabel.frame = CGRectMake(15, 15, [UIScreen mainScreen].bounds.size.width - 30, [UIScreen mainScreen].bounds.size.height - 30);
     
+    self.view.userInteractionEnabled = YES;
     UIScreenEdgePanGestureRecognizer *edgePanGesture = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(edgePanAction:)];
     edgePanGesture.edges = UIRectEdgeLeft;
     [self.view addGestureRecognizer:edgePanGesture];
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(popback)];
-    self.view.userInteractionEnabled = YES;
     [self.view addGestureRecognizer:tapGesture];
 }
 
@@ -95,10 +95,11 @@
 }
 
 - (id <UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController
-                          interactionControllerForAnimationController:(id <UIViewControllerAnimatedTransitioning>) animationController{
+                          interactionControllerForAnimationController:(id <UIViewControllerAnimatedTransitioning>) animationController {
     if ([animationController isKindOfClass:[RCYBookAnimatorObject class]]) {
         return self.percentInteractiveTransition;
-    }else{
+    }
+    else {
         return nil;
     }
 }
