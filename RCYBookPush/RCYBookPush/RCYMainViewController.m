@@ -8,7 +8,6 @@
 
 #import "RCYMainViewController.h"
 #import "RCYNextViewController.h"
-#import "RCYBookAnimatorObject.h"
 #import "UIViewController+bookAnimation.h"
 
 @interface RCYMainViewController () <UINavigationControllerDelegate>
