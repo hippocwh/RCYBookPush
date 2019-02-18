@@ -24,13 +24,6 @@
     return object;
 }
 
-- (CGFloat)zPosition {
-    if (!_zPosition) {
-        _zPosition = 500;
-    }
-    return _zPosition;
-}
-
 - (NSTimeInterval)transitionDuration:(nullable id <UIViewControllerContextTransitioning>)transitionContext {
     return 0.8;
 }
@@ -38,7 +31,7 @@
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
     UIView *containerView = [transitionContext containerView];
     CATransform3D transform = CATransform3DIdentity;
-    transform.m34 = -1 / self.zPosition;
+    transform.m34 = -1.0 / 500.0;
     [containerView.layer setSublayerTransform:transform];
     
     NSTimeInterval duration = [self transitionDuration:transitionContext];
