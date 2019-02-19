@@ -38,7 +38,6 @@
     self.contentLabel.frame = CGRectMake(15, 15, [UIScreen mainScreen].bounds.size.width - 30, [UIScreen mainScreen].bounds.size.height - 30);
     
     self.navigationController.delegate = self;
-    self.bookCoverView = self.bookCover;
     
     self.transitionOperation = UINavigationControllerOperationPop;
     self.targetClass = [RCYMainViewController class];

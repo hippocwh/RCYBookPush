@@ -91,6 +91,10 @@
     if (self.transitionGestureDelegate && [self.transitionGestureDelegate respondsToSelector:@selector(transitionGesturePush)]) {
         [self.transitionGestureDelegate transitionGesturePush];
     }
+    else if (self.targetClass && [self.targetClass isMemberOfClass:[UIViewController class]]) {
+        UIViewController *vc = [[self.targetClass alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (void)popToFromViewController {

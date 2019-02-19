@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) UINavigationControllerOperation transitionOperation;
 
 /**
- 当需要添加下面的两个手势时，需要实现这个delegate（若只是简单的pop的话可以不实现）
+ 当需要添加下面的两个手势时，需要实现这个delegate（若只是简单的push,pop的话可以不实现）
  */
 @property (nonatomic, weak) id<transitionGestureDelegate> transitionGestureDelegate;
 

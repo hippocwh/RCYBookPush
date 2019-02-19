@@ -10,7 +10,7 @@
 #import "RCYNextViewController.h"
 #import "UIViewController+bookAnimation.h"
 
-@interface RCYMainViewController () <UINavigationControllerDelegate, transitionGestureDelegate>
+@interface RCYMainViewController () <UINavigationControllerDelegate>
 
 @property (nonatomic, strong) UIImageView *bookCover;
 
@@ -37,14 +37,12 @@
     
     self.transitionOperation = UINavigationControllerOperationPush;
     self.targetClass = [RCYNextViewController class];
-    self.transitionGestureDelegate = self;
     [self appendTapActionWithTargetView:self.bookCover];
     [self appendEdgePanActionWithDirection:UIRectEdgeRight];
 }
 
 - (void)pushViewController {
     RCYNextViewController *nextVc = [[RCYNextViewController alloc] init];
-    nextVc.bookCover = self.bookCover;
     [self.navigationController pushViewController:nextVc animated:YES];
 }
 
@@ -59,11 +57,6 @@
         _bookCover.userInteractionEnabled = YES;
     }
     return _bookCover;
-}
-
-#pragma mark - transitionGestureDelegate
-- (void)transitionGesturePush {
-    [self pushViewController];
 }
 
 @end

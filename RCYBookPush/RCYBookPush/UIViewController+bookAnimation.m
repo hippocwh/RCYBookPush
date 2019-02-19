@@ -24,6 +24,9 @@
                                                 fromViewController:(UIViewController *)fromVC
                                                   toViewController:(UIViewController *)toVC {
     if ([toVC isKindOfClass:self.targetClass] && self.transitionOperation == operation) {
+        if (operation == UINavigationControllerOperationPush) {
+            toVC.bookCoverView = self.bookCoverView;
+        }
         return [RCYBookAnimatorObject objectWithBookCoverView:self.bookCoverView animationControllerForOperation:operation];
     }
     return nil;
