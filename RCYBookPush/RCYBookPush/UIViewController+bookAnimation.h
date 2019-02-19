@@ -18,11 +18,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) UINavigationControllerOperation bookAnimateOperation;
 
+//当operation为push，且需要添加下面的手势时，才需要实现这个block
 @property (nonatomic, copy) void (^bookPushBlock)(void);
 
-- (void)appendTapActionWithTargetView:(__kindof UIView *)targetView;
+- (UITapGestureRecognizer *)appendTapActionWithTargetView:(__kindof UIView *)targetView;
 
-- (void)appendEdgePanActionWithDirection:(UIRectEdge)direction;
+- (UIScreenEdgePanGestureRecognizer *)appendEdgePanActionWithDirection:(UIRectEdge)direction;
 
 @end
 

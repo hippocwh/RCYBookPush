@@ -19,34 +19,35 @@
 
 @implementation UIViewController (bookAnimation)
 
-- (void)appendTapActionWithTargetView:(__kindof UIView *)targetView {
+- (UITapGestureRecognizer *)appendTapActionWithTargetView:(__kindof UIView *)targetView {
     targetView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGesture;
     switch (self.bookAnimateOperation) {
         case UINavigationControllerOperationPush:
         {
-            tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushToNextViewController)];
+            tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bookPushToNextViewController)];
             [targetView addGestureRecognizer:tapGesture];
             break;
         }
         case UINavigationControllerOperationPop:
         {
-            tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(popToFromViewController)];
+            tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bookPopToFromViewController)];
             [targetView addGestureRecognizer:tapGesture];
             break;
         }
         default:
             break;
     }
-    
+    return tapGesture;
 }
 
-- (void)appendEdgePanActionWithDirection:(UIRectEdge)direction {
+- (UIScreenEdgePanGestureRecognizer *)appendEdgePanActionWithDirection:(UIRectEdge)direction {
     self.view.userInteractionEnabled = YES;
     self.direction = direction;
     UIScreenEdgePanGestureRecognizer *edgePanGesture = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(edgePanAction:)];
     edgePanGesture.edges = self.direction;
     [self.view addGestureRecognizer:edgePanGesture];
+    return edgePanGesture;
 }
 
 - (void)edgePanAction:(UIScreenEdgePanGestureRecognizer *)recognizer {
@@ -60,12 +61,12 @@
         switch (self.bookAnimateOperation) {
             case UINavigationControllerOperationPush:
             {
-                [self pushToNextViewController];
+                [self bookPushToNextViewController];
                 break;
             }
             case UINavigationControllerOperationPop:
             {
-                [self popToFromViewController];
+                [self bookPopToFromViewController];
                 break;
             }
             default:
@@ -106,11 +107,11 @@
     }
 }
 
-- (void)pushToNextViewController {
+- (void)bookPushToNextViewController {
     !self.bookPushBlock ? : self.bookPushBlock();
 }
 
-- (void)popToFromViewController {
+- (void)bookPopToFromViewController {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
