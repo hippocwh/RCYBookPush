@@ -39,7 +39,8 @@
     
     self.navigationController.delegate = self;
     self.bookCoverView = self.bookCover;
-    self.bookAnimateOperation = UINavigationControllerOperationPop;
+    
+    self.transitionOperation = UINavigationControllerOperationPop;
     self.targetClass = [RCYMainViewController class];
     [self appendTapActionWithTargetView:self.view];
     [self appendEdgePanActionWithDirection:UIRectEdgeLeft];

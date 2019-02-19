@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9CD04496221BE8ED00A4060A /* UIViewController+transition.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CD04495221BE8ED00A4060A /* UIViewController+transition.m */; };
 		9CDFE7F3221A9BD600709A11 /* UIViewController+bookAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDFE7F2221A9BD600709A11 /* UIViewController+bookAnimation.m */; };
 		9CE4F90521FFF03D00A890A5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CE4F90421FFF03D00A890A5 /* AppDelegate.m */; };
 		9CE4F90D21FFF03E00A890A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CE4F90C21FFF03E00A890A5 /* Assets.xcassets */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9CD04494221BE8ED00A4060A /* UIViewController+transition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+transition.h"; sourceTree = "<group>"; };
+		9CD04495221BE8ED00A4060A /* UIViewController+transition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+transition.m"; sourceTree = "<group>"; };
 		9CDFE7F1221A9BD600709A11 /* UIViewController+bookAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+bookAnimation.h"; sourceTree = "<group>"; };
 		9CDFE7F2221A9BD600709A11 /* UIViewController+bookAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+bookAnimation.m"; sourceTree = "<group>"; };
 		9CE4F90021FFF03D00A890A5 /* RCYBookPush.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RCYBookPush.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +82,8 @@
 				9CE4F92021FFF98900A890A5 /* RCYBookAnimatorObject.m */,
 				9CDFE7F1221A9BD600709A11 /* UIViewController+bookAnimation.h */,
 				9CDFE7F2221A9BD600709A11 /* UIViewController+bookAnimation.m */,
+				9CD04494221BE8ED00A4060A /* UIViewController+transition.h */,
+				9CD04495221BE8ED00A4060A /* UIViewController+transition.m */,
 			);
 			path = RCYBookPush;
 			sourceTree = "<group>";
@@ -158,6 +163,7 @@
 				9CE4F91B21FFF06000A890A5 /* RCYNextViewController.m in Sources */,
 				9CE4F92121FFF98900A890A5 /* RCYBookAnimatorObject.m in Sources */,
 				9CE4F90521FFF03D00A890A5 /* AppDelegate.m in Sources */,
+				9CD04496221BE8ED00A4060A /* UIViewController+transition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
