@@ -38,9 +38,14 @@
     self.targetClass = [RCYNextViewController class];
     [self appendTapActionWithTargetView:self.bookCover];
     [self appendEdgePanActionWithDirection:UIRectEdgeRight];
+    __weak typeof(self) weakSelf = self;
+    self.bookPushBlock = ^{
+        __strong typeof(self) self = weakSelf;
+        [self pushViewController];
+    };
 }
 
-- (void)pushToNextViewController {
+- (void)pushViewController {
     RCYNextViewController *nextVc = [[RCYNextViewController alloc] init];
     nextVc.bookCover = self.bookCover;
     [self.navigationController pushViewController:nextVc animated:YES];

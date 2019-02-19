@@ -45,10 +45,6 @@
     [self appendEdgePanActionWithDirection:UIRectEdgeLeft];
 }
 
-- (void)popToFromViewController {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (UILabel *)contentLabel {
     if (!_contentLabel) {
         _contentLabel = [[UILabel alloc] init];

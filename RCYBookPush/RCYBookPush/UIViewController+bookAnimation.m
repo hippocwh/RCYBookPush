@@ -19,47 +19,6 @@
 
 @implementation UIViewController (bookAnimation)
 
-- (Class)targetClass {
-    return objc_getAssociatedObject(self, @selector(targetClass));
-}
-
-- (void)setTargetClass:(Class)targetClass {
-    objc_setAssociatedObject(self, @selector(targetClass), targetClass, OBJC_ASSOCIATION_ASSIGN);
-}
-
-- (UINavigationControllerOperation)bookAnimateOperation {
-    NSNumber *operation = objc_getAssociatedObject(self, @selector(bookAnimateOperation));
-    return [operation integerValue];
-}
-
-- (void)setBookAnimateOperation:(UINavigationControllerOperation)bookAnimateOperation {
-    objc_setAssociatedObject(self, @selector(bookAnimateOperation), @(bookAnimateOperation), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (__kindof UIView *)bookCoverView {
-    return objc_getAssociatedObject(self, @selector(bookCoverView));
-}
-
-- (void)setBookCoverView:(__kindof UIView *)bookCoverView {
-    objc_setAssociatedObject(self, @selector(bookCoverView), bookCoverView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (UIPercentDrivenInteractiveTransition *)percentInteractiveTransition {
-    return objc_getAssociatedObject(self, @selector(percentInteractiveTransition));
-}
-
-- (void)setPercentInteractiveTransition:(UIPercentDrivenInteractiveTransition *)percentInteractiveTransition {
-    objc_setAssociatedObject(self, @selector(percentInteractiveTransition), percentInteractiveTransition, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (UIRectEdge)direction {
-    return [objc_getAssociatedObject(self, @selector(direction)) integerValue];
-}
-
-- (void)setDirection:(UIRectEdge)direction {
-    objc_setAssociatedObject(self, @selector(direction), @(direction), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
 - (void)appendTapActionWithTargetView:(__kindof UIView *)targetView {
     targetView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGesture;
@@ -147,15 +106,61 @@
     }
 }
 
-/**
- 下面两个方法由主类实现
- */
 - (void)pushToNextViewController {
-    
+    !self.bookPushBlock ? : self.bookPushBlock();
 }
 
 - (void)popToFromViewController {
-    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - setter & getter
+- (Class)targetClass {
+    return objc_getAssociatedObject(self, @selector(targetClass));
+}
+
+- (void)setTargetClass:(Class)targetClass {
+    objc_setAssociatedObject(self, @selector(targetClass), targetClass, OBJC_ASSOCIATION_ASSIGN);
+}
+
+- (UINavigationControllerOperation)bookAnimateOperation {
+    return [objc_getAssociatedObject(self, @selector(bookAnimateOperation)) integerValue];
+}
+
+- (void)setBookAnimateOperation:(UINavigationControllerOperation)bookAnimateOperation {
+    objc_setAssociatedObject(self, @selector(bookAnimateOperation), @(bookAnimateOperation), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (__kindof UIView *)bookCoverView {
+    return objc_getAssociatedObject(self, @selector(bookCoverView));
+}
+
+- (void)setBookCoverView:(__kindof UIView *)bookCoverView {
+    objc_setAssociatedObject(self, @selector(bookCoverView), bookCoverView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIPercentDrivenInteractiveTransition *)percentInteractiveTransition {
+    return objc_getAssociatedObject(self, @selector(percentInteractiveTransition));
+}
+
+- (void)setPercentInteractiveTransition:(UIPercentDrivenInteractiveTransition *)percentInteractiveTransition {
+    objc_setAssociatedObject(self, @selector(percentInteractiveTransition), percentInteractiveTransition, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIRectEdge)direction {
+    return [objc_getAssociatedObject(self, @selector(direction)) integerValue];
+}
+
+- (void)setDirection:(UIRectEdge)direction {
+    objc_setAssociatedObject(self, @selector(direction), @(direction), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (void (^)(void))bookPushBlock {
+    return objc_getAssociatedObject(self, @selector(bookPushBlock));
+}
+
+- (void)setBookPushBlock:(void (^)(void))bookPushBlock {
+    objc_setAssociatedObject(self, @selector(bookPushBlock), bookPushBlock, OBJC_ASSOCIATION_COPY);
 }
 
 @end

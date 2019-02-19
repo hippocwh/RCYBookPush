@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) UINavigationControllerOperation bookAnimateOperation;
 
+@property (nonatomic, copy) void (^bookPushBlock)(void);
+
 - (void)appendTapActionWithTargetView:(__kindof UIView *)targetView;
 
 - (void)appendEdgePanActionWithDirection:(UIRectEdge)direction;
