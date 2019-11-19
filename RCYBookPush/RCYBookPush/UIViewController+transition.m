@@ -91,7 +91,7 @@
     if (self.transitionGestureDelegate && [self.transitionGestureDelegate respondsToSelector:@selector(transitionGesturePush)]) {
         [self.transitionGestureDelegate transitionGesturePush];
     }
-    else if (self.targetClass && [self.targetClass isKindOfClass:[UIViewController class]]) {
+    else if (self.targetClass) {
         UIViewController *vc = [[self.targetClass alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }
